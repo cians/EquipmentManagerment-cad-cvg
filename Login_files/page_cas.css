@@ -1,0 +1,66 @@
+body{color:#666; background:#EEEEEE}
+.apply-content{padding-top:30px;}
+.top-title{width:1000px;height:120px;margin:0 auto;background:url(../images/top.png)no-repeat;background-position:50px 8px;}
+.layout_main{background-color:#EEEEEE;height:768px;}
+.bg{min-width:960px;width:100%;height:768px;overflow:hidden;background-size:cover;background:url(../images/login-bg2.jpg) no-repeat;background-position:;background-color:#EEEEEE;margin:0 auto;}
+.setting_module{width:960px;margin:0 auto;min-height:768px;}
+.layout_right{margin:0px}
+.form-horizontal .control-label {padding-right: 10px;}
+.setup_main li{ clear: both; width:100%; height:30px; line-height:25px; }
+.setup_main li p{ display:inline;}
+.login-frame{width:367px;height:334px;float:right;margin:160px 60px 0 0;background:url(../images/login-frame.png) no-repeat;display:block;}
+.login-frame ul{margin:15px 0 0 33px;width:300px;}
+.login-frame ul label{margin-left:4px; *margin-left:2px;}
+.login-frame ul input{margin-left:4px;}
+.login-frame .nametip{float:right;font-size:13px;height:30px; line-height:30px;margin-right:25px;color:#666;}
+.login-frame a.forgetpw{float:right;font-size:13px;height:30px; line-height:30px;margin-right:24px;color:#FF617B;}
+.login-frame a.forgetpw:hover{color:#FF062F;}
+.login-frame a.regist{margin-left:22px;float:left;display: inline-block;*display: inline;width:128px;height:52px;background:url(../images/login-button.png) 0 -104px no-repeat;}
+.login-frame a.regist:hover, .login-frame a.regist:active{background:url(../images/login-button.png) 0 -156px no-repeat;}
+.loginbutton {
+  float:left;
+  display: inline-block;
+  *display: inline;
+  font-size: 13px;
+  line-height: 18px;
+  *line-height: 20px;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  cursor: pointer;
+  background:url(../images/login-button.png) 0 0 no-repeat;
+  width:128px; 
+  height:52px;
+  border:none;
+  -webkit-border-radius: 0px;
+     -moz-border-radius: 0px;
+          border-radius: 0px;
+	zoom: 1;
+}
+.loginbutton:hover{background:url(../images/login-button.png) 0 -52px no-repeat;}
+.loginbutton:focus{background:url(../images/login-button.png) 0 -52px no-repeat;}
+.loginbutton:active{background:url(../images/login-button.png) 0 -52px no-repeat;}
+.loginbutton{margin-left:65px;}
+.login-form{margin:80px 0 0 10px;width:346px;}
+.login-frame .errors{padding-left:37px;}
+.zjuam{float:right;margin:-6px 39px 0 0;background:url(../images/zjuambutton.png) no-repeat;width:110px;height:16px;}
+
+.errortip{background:#DB4D4A;color:#fff;padding:2px 5px;}
+.setup_main .dl-horizontal dd,dt{height:30px;line-height:26px;}
+.setup_main .dl-table dd,.setup_main .dl-table dt{height:34px;line-height:26px;}
+.setup_main .dl-horizontal .title{text-align:left;width:150px;clear:none;font-size:13px;}
+.subleft .dl-horizontal .title{text-align:left;width:120px;clear:none;margin-left:5px;}
+.setup_main .dl-table .title{background:#DDF4FF;width:150px;color:black;text-align:center;line-height:18px;font-size:12px;padding-top:8px;height:27px;
+-moz-box-shadow:inset 0 -2px 2px #B8E7FF;
+-webkit-box-shadow:inset 0 -2px 2px #B8E7FF;
+box-shadow:inset 0 -2px 2px #B8E7FF;
+border-top-right-radius: 4px; border-top-left-radius: 4px;
+}
+
+.grs-footer{height:81px;border-top:1px solid #CCCBCB;padding-top:10px;background:url(../images/login-footer.png) repeat-x;background-color:#E8E8E8;font-size:12px;text-align:center;}
+.grs-footer-wrap{width:960px;height:26px;line-height:26px;margin:0 auto;}
+.grs-footer a,
+.grs-footer a:link,
+.grs-footer a:visited{color:#8B8B8B;text-decoration:none;margin-left:10px;}
+.grs-footer a:hover,.grs-footer a:active{color:#8B8B8B;text-decoration:none;font-weight:bold;}
+/* text-shadow: 0 1px 0 rgba(0, 0, 0, .7); }*/

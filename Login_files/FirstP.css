@@ -1,0 +1,43 @@
+#ADD {
+    position: absolute;
+    top: 40px;
+    left: 665px;
+    width: 100px;
+    height: 28px;
+}
+
+#Refresh {
+    position: absolute;
+    top: 40px;
+    left: 765px;
+    width: 100px;
+    height: 28px;
+}
+
+.table_num {
+    width: 80px;
+}
+
+.table_pname {
+    width: 80px;
+}
+
+.table_category {
+    width: 100px;
+}
+
+.table_specification {
+    width: 300px;
+}
+
+.table_time {
+    width: 160px;
+}
+
+.DelButt {
+    width: 30px;
+    margin: 0;
+    border: none;
+    padding: 0;
+    background: url("../images/remove.png") 0 0 no-repeat;
+}
