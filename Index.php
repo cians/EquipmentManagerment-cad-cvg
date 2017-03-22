@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,27 +7,58 @@
     <title>设备管理系统--登录</title>
     <script charset="utf-8" src="./Login_files/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
-   		    $(function(){
+        function confirm()
+        {
+            var uname=$("#id_username").val();
+            var pword=$("#id_password").val();
+            if(!pword)
+            {
+                pword='<?php echo $_SERVER[ "REMOTE_ADDR"]; ?>';
+            }
+            console.log(uname+pword);
+            $.post("confirm.php",{username:uname,password:pword},function(pdata)
+            {
+                data=parseInt(pdata);
+                switch (data)
+                {
+                    case 0:
+                        var qr=confirm("你的登录密码已设置为你的IP:"+pword+"，下次登录IP没变的话可无密码登录");
+                              if(qr==true) {window.location.href='main.php';}
+                        console.log("password has set as your ip");
+                        break;
+                    case 1:
+                        window.location.href='main.php';
+                        break;
+                    case 8:
+                        alert("errors! try typing your ip");
+                        break;
+                    case 9:
+                        alert("error occurs when set password");
+                        break;
+                    case 7:
+                        alert("录入登录时间出错");
+                        break;
+                    default:
+                        alert("登录出错，请检查姓名和密码，或联系管理员");
+                }
+            })
+        }
+   		    $(function()
+               {
+                    document.onkeydown=function(event)
+                    {
+                        var e = event || window.event || arguments.callee.caller.arguments[0];
+                          if(e && e.keyCode==13)
+                          { // enter 键
+                            confirm();
+                          }
+
+                    }
+
+
                    $("#loginB").click(function()
                    {
-                        var uname=$("#id_username").val();
-                        var pword=$("#id_password").val();
-                        console.log(uname+pword);
-                        $.post("confirm.php",{username:uname,password:pword},function(pdata)
-                        {
-
-                            if(pdata=="password has set as your ip")
-                            {
-                                window.location.href='main.php';
-                                alert("密码已设置为你的内网IP地址");
-                            }          
-                          else if(pdata=="通过"){
-                                window.location.href='main.php';
-                          }
-                          else{
-                                alert("登录出错，请检查用户名或者密码，或联系管理员");
-                            }
-                        })
+                       confirm();
                    })
 
                })
@@ -54,7 +85,7 @@
                                                 帐号<span class="asteriskField">*</span>
                                             </label>
                                             <div class="controls">
-                                                <input class="textinput textInput" id="id_username" maxlength="30" name="username" placeholder="用户名" type="text">
+                                                <input class="textinput textInput" id="id_username" maxlength="30" name="username" placeholder="姓名" type="text">
                                             </div>
                                         </div>
                                         <div id="div_id_password" class="clearfix control-group">

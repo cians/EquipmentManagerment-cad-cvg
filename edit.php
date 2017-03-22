@@ -8,6 +8,7 @@ $category=$_POST["category"];
 $specification=$_POST["specification"];
 $detail=$_POST["detail"];
 $time=$_POST["time"];
+$operator=$_POST['operator'];
 $today=date("Y-m-d H:i");
 //echo "console.log("14")";
 $conn_edit = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
@@ -16,9 +17,21 @@ $sql = "UPDATE 设备使用状态 SET 设备类别='$category', 品牌规格='$s
 $res = $conn_edit->query($sql);
 if($res){
     echo $pname;
+    if($operator!=$pname && !ctype_space($category)&& !ctype_space($specification))
+    {
+
+        $sql_unusual="INSERT INTO 异常操作记录 VALUES ('$operator','$today','$pname','$rid','$category','$specification',0)";
+        $res_unusual=$conn_edit->query($sql_unusual);
+        if(!$res_unusual)
+        {
+            echo "录入异常操作记录失败";
+        }
+    }
+
 }
 else{
     echo "修改失败";
 }
+
 $conn_edit->close();
 ?>

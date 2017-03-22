@@ -9,7 +9,7 @@
         }
         </style>
         <body>
-    <p>说吧，你发现了什么BUG</p>
+    <p>你发现了什么BUG?</p>
     <form class=submitForm p>
        <div class=d> 
     <textarea type="text" class=inputtext rows=10 cols=100></textarea>

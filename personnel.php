@@ -3,13 +3,13 @@
         <title>人员数据库表信息</title>
     </head>
     <body>
-        <center>
             <form name="myForm" >
-                <table  border="1" cellspacing="0" cellpadding="0">
+                <table  border="1" cellspacing="0" cellpadding="8">
                     <caption>人员一览表</caption>
                         <th>姓名</th>
                         <th>年级</th>
                         <th>学号</th>
+						<th>联系方式</th>
 						<?php
 						header("Content-Type:text/html;charset=utf8");
 						$servername = "localhost";
@@ -30,12 +30,14 @@
 														$name=$row["姓名"];
 														$grade=$row["年级"];
 														$num=$row["学号"];
+														$phone=$row["联系方式"];
 													  
 												?>
 											<tr align="center">
 											<td><?php echo $name ?></td>
 											<td><?php echo $grade ?></td>
 											<td><?php echo $num ?></td>
+											<td><?php echo $phone ?></td>
 											</tr>
 											<?php
 							}
@@ -43,6 +45,5 @@
 						?>
 				</table>
             </form>
-        </center>
     </body>
 </html>

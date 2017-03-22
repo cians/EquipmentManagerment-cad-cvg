@@ -3,7 +3,7 @@
 <link href="./login_files/buttons.css" rel="stylesheet" type="text/css">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="X-UA-Compatible">
 
     <head>
 		<script src="./login_files/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
@@ -11,13 +11,13 @@
 		<script src="./login_files/jquery.jeditable.time.js" type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8">
 		//JS函数在html中是通过相应的事件触发的
-		function DelRow(ID)
+		function DelRow(ID,cate,spec)
 		{
 			<?php
 				if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 				echo "var yourname='{$_SESSION['username']}';";
 			?>
-			$.post("delete.php",{rid:ID,pname:yourname},function(status)
+			$.post("delete.php",{rid:ID,operator:yourname,category:cate,specification:spec},function(status)
 			{
 				if(status=="删除失败")
 					alert(status);
@@ -43,7 +43,7 @@
 					echo "var yourname='{$_SESSION['username']}';";
 					?>
 				//console.log(tpname);
-				$.post("edit.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime},function(pname)
+				$.post("edit.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime,operator:yourname},function(pname)
 				{
 					if((pname!=yourname) && (pname!="修改失败"))
 						alert("你正在更改"+pname+"的使用记录，系统将把本次操作记录发送给"+pname);
@@ -79,16 +79,31 @@
 
 			$("tr:odd").css("background-color","#CCCCCC");//偶数行变色
 			$("#ptable").css("border","none");//去除边框
+			$("#read").click(function()
+			{
+			    	<?php
+					if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+					echo "var yourname='{$_SESSION['username']}';";
+					?>
+				$.post("markread.php",{yourname:yourname},function(data)
+				{
+					if(data=="errors")
+					alert("标记已读出错");
+				})
+
+			});
 			$(".DelButt").click(function()  // 删除按钮
 			{
 				var RowID=$(this).parent("tr").children("td").eq(0).text();
+				var category=$(this).parent("tr").children("td").eq(2).text();
+				var specification=$(this).parent("tr").children("td").eq(3).text();
 				var r=confirm("你确定要删除"+RowID+"这一行吗？");
 				 if (r==true)
 					{
-					DelRow(RowID);
+					DelRow(RowID,category,specification);
 					}
-			})
-			$("#ADD").click(function()
+			});
+			$("#ADD").click(function()//添加按钮
 				{
 					//添加一行
 				<?php
@@ -173,18 +188,38 @@
 			<?php
 			if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 			$pname = $_SESSION['username'];
-			echo $pname,"，欢迎你！";
+			echo "<p>",$pname,"，欢迎你! ";
 			?>
-			<a href="pinfomation.php" >个人信息修改</a>
+			<a href="pinfomation.php?name=yourname" >个人信息修改</a>
 		</div>
+			<?php
+			//读取异常操作记录
+			$conn_query = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+			$sql_unusual="SELECT * FROM 异常操作记录 WHERE (被修改人='$pname'AND 已读=0)";
+			$res_unusual=$conn_query->query($sql_unusual);
+			if($res_unusual&&$res_unusual->num_rows>0)
+			{
+				echo "注意：";
+				echo "<blockquote>";
+				while($uRows = $res_unusual->fetch_assoc())
+					{
+						echo $uRows['操作人'],"于",$uRows['修改时间'],"在你的使用清单里添加了",$uRows['品牌规格']," ",$uRows['设备类别'],"(编号：",$uRows['设备ID'],")","<br>";
+					}
+				echo "</blockquote>";
+				echo "<a id=read href=FirstP.php >已读</a>";
+				//bug 已读没点击就被标记为1了--。html JavaScript在客户端运行，但是<?php 里的内容在提交时就会在服务器运行。
+			}
+			$conn_query->close();
+			?>
 		<div class=<?php $pname ?> +"info">
-			<br>你的目前设备使用情况：</br>
+			你的目前设备使用情况：
 		</div>	
 		<div>
 			<button id="ADD"  class="button button-glow button-border button-rounded button-primary" type="button" >新增</button>
 			<button id="Refresh"  class="button button-glow button-border button-rounded button-primary" type="button" >刷新</button>
 		</div>
 		<br>
+		<!--正在使用的设备列表-->
 		<div class="using_table">
             <form id="Form1" >
                 <table id="ptable" border="1" cellspacing="0" cellpadding="5" rules="row">
