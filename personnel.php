@@ -5,7 +5,7 @@
     <body>
             <form name="myForm" >
                 <table  border="1" cellspacing="0" cellpadding="8">
-                    <caption>人员一览表</caption>
+                    <caption><h2>人员一览表</h2></caption>
                         <th>姓名</th>
                         <th>年级</th>
                         <th>学号</th>

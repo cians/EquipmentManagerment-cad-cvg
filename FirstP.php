@@ -120,7 +120,6 @@
 			$("#Refresh").click(function()
 			{
 				location.reload(true);
-
 			});
 
 			$(".table_num, .table_pname, .table_category, .table_specification, .table_detail").click(function()
