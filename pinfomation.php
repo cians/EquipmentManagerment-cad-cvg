@@ -2,11 +2,13 @@
 <link href="./login_files/personinfo.css" rel="stylesheet" type="text/css">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
  <?php
     if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   ?>
     <head>
     <script src="./login_files/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
+    <script src="./login_files/md5.js"></script>
     <script type="text/javascript" charset="utf-8">
     $(function()
     {
@@ -49,7 +51,7 @@
                         case 13://回车
                             tdObj.html($(this).val());
                             //获取一行的所有列
-                            execute(tdObj);
+                            //execute();
                             break;
                         case 27:
                             tdObj.html(oldText);
@@ -60,7 +62,7 @@
                             //bug 在IP地址访问时，没有执行,没有审查元素--因为与input.blur冲突了 = = 
                             var newText = $(this).val();  
                             tdObj.html(newText);
-                            execute(tdObj);
+                           // execute();
 
                 });
         }
@@ -71,25 +73,37 @@
             var tsid=$("#sid").text();
             var tgrade=$("#grade").text();
             var tphone=$("#phone").text();
-            var tpword=$("#newpwords").value;
-            var tpword2=$("#newpwords2").value;
+            var tpword=$.trim($("#newpwords").val());
+            var tpword2=$.trim($("#newpwords2").val());
             <?php
 					if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					echo "var yourname='{$_SESSION['username']}';";
 			?>
-            console.log(tpword);
-            $.post("editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword,operator:yourname},function(data)
-				{
-                   var datai=parseInt(data);
-                    if(datai==0)
+           // console.log(tsid);
+            if(tpword==tpword2&&tname==yourname)
+                $.post("editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
                     {
-                        alert("修改出错");
-                    }
-                })
+                    //有时没有返回data，可能需要延时？
+                    var datai=parseInt(data);
+                    console.log(datai);
+                        if(datai==0)
+                        {
+                            alert("修改出错");
+                        }
+                        else
+                            alert("信息已修改");
+                    })
+            else
+            alert("两次输入的密码不一致!");
+
         }
-        $("#pname,#sid,#grade,#phone").click(function()
+        $("#sid,#grade,#phone").click(function()
         {
             td2textbox($(this));
+        })
+        $("#submit").click(function()
+        {
+            execute();          
         })
     })
 
@@ -106,7 +120,7 @@
     if($row=$res->fetch_assoc())
     {
     ?>
-<form method=POST action=submit.php>
+<form>
     <table id=table border="1" cellspacing="0" cellpadding="5" rules="row">
         <tr>
             <td>姓名：</td>

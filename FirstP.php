@@ -3,7 +3,7 @@
 <link href="./login_files/buttons.css" rel="stylesheet" type="text/css">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta http-equiv="X-UA-Compatible">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 
     <head>
 		<script src="./login_files/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
@@ -189,7 +189,7 @@
 			$pname = $_SESSION['username'];
 			echo "<p>",$pname,"，欢迎你! ";
 			?>
-			<a href="pinfomation.php?name=yourname" >个人信息修改</a>
+			<a href="pinfomation.php?name=yourname" >个人信息修改</a></p>
 		</div>
 			<?php
 			//读取异常操作记录
@@ -241,11 +241,11 @@
 							{
 								die("数据库连接失败: " . $conn->connect_error);
 							} 
-						$sql = "SELECT * FROM 设备使用状态 WHERE 使用人='$pname' ";
+						$sql = "SELECT * FROM 设备使用状态 WHERE 当前使用人='$pname' ";
 						$result = $conn->query($sql);
 						  while($row = $result->fetch_assoc())
 							{
-								$name=$row["使用人"];
+								$name=$row["当前使用人"];
 								$category=$row["设备类别"];
 								$specification=$row["品牌规格"];
 								$time=$row["修改时间"];

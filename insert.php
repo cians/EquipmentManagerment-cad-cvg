@@ -12,7 +12,7 @@ $today=date("Y-m-d H:i");
 //echo "console.log("14")";
 $conn_insert = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
 //$sql_count="";
-$sql ="INSERT INTO 设备使用状态 (使用人,设备类别,品牌规格,备注,修改时间) VALUES ('$pname','$category','$specification','$detail','$time')";
+$sql ="INSERT INTO 设备使用状态 (当前使用人,设备类别,品牌规格,备注,修改时间) VALUES ('$pname','$category','$specification','$detail','$time')";
 $res = $conn_insert->query($sql);
 if($res){
     echo $pname;
