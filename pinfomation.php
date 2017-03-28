@@ -1,5 +1,5 @@
-<link href="./login_files/buttons.css" rel="stylesheet" type="text/css">
-<link href="./login_files/personinfo.css" rel="stylesheet" type="text/css">
+<link href="./css/buttons.css" rel="stylesheet" type="text/css">
+<link href="./css/personinfo.css" rel="stylesheet" type="text/css">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -7,8 +7,7 @@
     if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
   ?>
     <head>
-    <script src="./login_files/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
-    <script src="./login_files/md5.js"></script>
+    <script src="./js/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
     $(function()
     {
@@ -81,7 +80,7 @@
 			?>
            // console.log(tsid);
             if(tpword==tpword2&&tname==yourname)
-                $.post("editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
+                $.post("_editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
                     {
                     //有时没有返回data，可能需要延时？
                     var datai=parseInt(data);

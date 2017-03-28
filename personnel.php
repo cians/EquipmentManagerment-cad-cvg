@@ -1,8 +1,12 @@
-﻿<html>
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html >
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <head>
         <title>人员数据库表信息</title>
     </head>
     <body>
+	<div class=body align=center>
             <form name="myForm" >
                 <table  border="1" cellspacing="0" cellpadding="8">
                     <caption><h2>人员一览表</h2></caption>
@@ -45,5 +49,6 @@
 						?>
 				</table>
             </form>
+		</div>
     </body>
 </html>

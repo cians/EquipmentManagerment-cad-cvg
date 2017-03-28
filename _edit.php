@@ -20,7 +20,7 @@ if($res){
     if($operator!=$pname && !ctype_space($category)&& !ctype_space($specification))
     {
 
-        $sql_unusual="INSERT INTO 异常操作记录 VALUES ('$operator','$today','$pname','$rid','$category','$specification',0)";
+        $sql_unusual="INSERT INTO 异常操作记录 VALUES ('$operator','$today','$pname','$rid','$category','$specification',0,'修改')";
         $res_unusual=$conn_edit->query($sql_unusual);
         if(!$res_unusual)
         {

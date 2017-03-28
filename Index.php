@@ -1,11 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link type="text/css" rel="stylesheet" href="./Login_files/login1.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<link type="text/css" rel="stylesheet" href="./css/index.css">
     <title>设备管理系统--登录</title>
-    <script charset="utf-8" src="./Login_files/jquery-1.7.2.min.js"></script>
+<head>
+    <script charset="utf-8" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
         function confirm()
         {
@@ -15,8 +15,8 @@
             {
                 pword='<?php echo $_SERVER[ "REMOTE_ADDR"]; ?>';
             }
-            console.log(uname+pword);
-            $.post("confirm.php",{username:uname,password:pword},function(pdata)
+           // console.log(uname+pword);
+            $.post("_confirm.php",{username:uname,password:pword},function(pdata)
             {
                 data=parseInt(pdata);
                 switch (data)
@@ -43,8 +43,8 @@
                 }
             })
         }
-   		    $(function()
-               {
+     $(function()
+     {
                     document.onkeydown=function(event)
                     {
                         var e = event || window.event || arguments.callee.caller.arguments[0];
@@ -61,10 +61,8 @@
                        confirm();
                    })
 
-               })
+     })
     </script>
-
-
 </head>
 <body>
       <div class="frontHome page" id="loginbox">

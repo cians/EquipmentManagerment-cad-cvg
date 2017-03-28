@@ -1,0 +1,47 @@
+.fa {
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+}
+
+#search {
+    position: relative;
+    top: 5px;
+    left: 88px;
+}
+
+.table_id {
+    width: 80px;
+}
+
+.table_category {
+    width: 100px;
+}
+
+.table_specification,
+.table_notes {
+    width: 200px;
+}
+
+.table_user {
+    width: 80px;
+}
+
+.table_registration {
+    width: 80px;
+}
+
+.table_time {
+    width: 160px;
+}
+
+ul,
+li {
+    text-align: center;
+}
+
+.bodyc {
+    margin: 8px;
+}

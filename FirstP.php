@@ -1,14 +1,12 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<link href="./login_files/FirstP.css" rel="stylesheet" type="text/css">
-<link href="./login_files/buttons.css" rel="stylesheet" type="text/css">
+<link href="./css/FirstP.css" rel="stylesheet" type="text/css">
+<link href="./css/buttons.css" rel="stylesheet" type="text/css">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
-
     <head>
-		<script src="./login_files/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
-		<script src="./login_files/jquery.jeditable.js"  type="text/javascript"></script>
-		<script src="./login_files/jquery.jeditable.time.js" type="text/javascript"></script>
+		<script src="./js/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
+		<script src="./js/jquery.jeditable.js"  type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8">
 		//JS函数在html中是通过相应的事件触发的
 		function DelRow(ID,cate,spec)
@@ -17,7 +15,7 @@
 				if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 				echo "var yourname='{$_SESSION['username']}';";
 			?>
-			$.post("delete.php",{rid:ID,operator:yourname,category:cate,specification:spec},function(status)
+			$.post("_delete.php",{rid:ID,operator:yourname,category:cate,specification:spec},function(status)
 			{
 				if(status=="删除失败")
 					alert(status);
@@ -37,13 +35,12 @@
 				var tspecification=tds.eq(3).text();
 				var tdetail=tds.eq(4).text();
 				var ttime=tds.eq(5).text();
-
 				<?php
 					if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					echo "var yourname='{$_SESSION['username']}';";
 					?>
 				//console.log(tpname);
-				$.post("edit.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime,operator:yourname},function(pname)
+				$.post("_edit.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime,operator:yourname},function(pname)
 				{
 					if((pname!=yourname) && (pname!="修改失败"))
 						alert("你正在更改"+pname+"的使用记录，系统将把本次操作记录发送给"+pname);
@@ -62,7 +59,7 @@
 			var tspecification=tds.eq(3).text();
 			var tdetail=tds.eq(4).text();
 			var ttime=tds.eq(5).text();
-			$.post("insert.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime},function(pname)
+			$.post("_insert.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime},function(pname)
 					{
 						 if(pname=="修改失败")
 								alert(pname);
@@ -76,7 +73,6 @@
 		};
 		//jquery方法
 		$(function(){
-
 			$("tr:odd").css("background-color","#CCCCCC");//偶数行变色
 			$("#ptable").css("border","none");//去除边框
 			$("#read").click(function()
@@ -85,7 +81,7 @@
 					if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					echo "var yourname='{$_SESSION['username']}';";
 					?>
-				$.post("markread.php",{yourname:yourname},function(data)
+				$.post("_markread.php",{yourname:yourname},function(data)
 				{
 					if(data=="errors")
 					alert("标记已读出错");
@@ -222,12 +218,6 @@
 		<div class="using_table">
             <form id="Form1" >
                 <table id="ptable" border="1" cellspacing="0" cellpadding="5" rules="row">
-						<th>编号</th>
-                        <th>姓名</th>
-                        <th>设备类别</th>
-						<th>品牌规格</th>
-						<th>备注</th>
-                        <th>修改时间</th>
 					<div class="table_body">
 					<?php
 						$servername = "localhost";
@@ -243,6 +233,21 @@
 							} 
 						$sql = "SELECT * FROM 设备使用状态 WHERE 当前使用人='$pname' ";
 						$result = $conn->query($sql);
+						if($result->num_rows>0)
+						{
+						?>
+							<tr id="table_header">
+							<th>编号</th>
+							<th>姓名</th>
+							<th>设备类别</th>
+							<th>品牌规格</th>
+							<th>备注</th>
+							<th>修改时间</th>
+							</tr>
+						<?php			
+						}
+						else
+						echo "           无";
 						  while($row = $result->fetch_assoc())
 							{
 								$name=$row["当前使用人"];
@@ -256,7 +261,7 @@
 								<td  class="table_num"><?php echo $RID ?></td>														
 								<td  class="table_pname" ><?php echo $name ?></td>
 								<td  class="table_category" ><?php echo $category ?></td>
-								<td  class="table_specification" id=Edetail><?php echo $specification ?></td>
+								<td  class="table_specification"><?php echo $specification ?></td>
 								<td class="table_detail"><?php echo $Detail ?></td>
 								<td  class="table_time" ><?php echo $time ?></td>
 

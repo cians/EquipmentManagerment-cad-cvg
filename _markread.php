@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors','on');
+error_reporting(E_ALL);
+header("charset=utf-8");  
 $yourname=$_POST['yourname'];
 $conn_read = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
 $sql_unread="UPDATE 异常操作记录 SET 已读=1 WHERE 被修改人='$yourname'";

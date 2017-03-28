@@ -1,7 +1,7 @@
 #ADD {
     position: absolute;
     top: 40px;
-    left: 665px;
+    left: 700px;
     width: 100px;
     height: 28px;
 }
@@ -9,7 +9,7 @@
 #Refresh {
     position: absolute;
     top: 40px;
-    left: 765px;
+    left: 800px;
     width: 100px;
     height: 28px;
 }
@@ -27,7 +27,11 @@
 }
 
 .table_specification {
-    width: 300px;
+    width: 200px;
+}
+
+.table_detail {
+    width: 200px;
 }
 
 .table_time {
