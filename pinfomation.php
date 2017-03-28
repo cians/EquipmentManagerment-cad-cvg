@@ -1,6 +1,7 @@
+<!DOCTYPE HTML>
 <link href="./css/buttons.css" rel="stylesheet" type="text/css">
 <link href="./css/personinfo.css" rel="stylesheet" type="text/css">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<html lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
  <?php
@@ -48,7 +49,7 @@
                     switch(event.keyCode)
                     {
                         case 13://回车
-                            tdObj.html($(this).val());
+                            tdObj.html(inputObj.val());
                             //获取一行的所有列
                             //execute();
                             break;
@@ -59,7 +60,7 @@
                 }).blur(function()
                 {
                             //bug 在IP地址访问时，没有执行,没有审查元素--因为与input.blur冲突了 = = 
-                            var newText = $(this).val();  
+                            var newText = inputObj.val();  
                             tdObj.html(newText);
                            // execute();
 

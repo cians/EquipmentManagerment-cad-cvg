@@ -1,7 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+﻿<!DOCTYPE html>
 <link href="./css/FirstP.css" rel="stylesheet" type="text/css">
 <link href="./css/buttons.css" rel="stylesheet" type="text/css">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-cn" xml:lang="zh-cn">
+<html lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <head>
@@ -28,6 +28,7 @@
 		function SendRow(TdObj)
 		{
 			//列添加或变换顺序，此处会受影响
+			//0=编号；1=姓名；2=设备类别；3=品牌规格；4=备注；5=修改时间
 				var tds=TdObj.parent("tr").children("td");//注意：当列表添加列时，此处要随之添列
 				var tid=tds.eq(0).text(); //！！！id是数字要验证是否有影响
 				var tpname=tds.eq(1).text();
@@ -42,10 +43,12 @@
 				//console.log(tpname);
 				$.post("_edit.php",{id:tid,pname:tpname,category:tcategory,specification:tspecification,detail:tdetail,time:ttime,operator:yourname},function(pname)
 				{
-					if((pname!=yourname) && (pname!="修改失败"))
+					if((pname!=yourname) && (pname!="修改失败") && pname!="空闲")
 						alert("你正在更改"+pname+"的使用记录，系统将把本次操作记录发送给"+pname);
-						else if(pname=="修改失败")
+					else if(pname=="修改失败")
 							alert(pname);
+					else if(pname=="空闲")
+							alert("当你将使用人置为了空闲，系统记为 你归还了该设备");
 				});
 		// location.reload(true) 没用 其实不需要刷新
 		//location.href=location.href;
@@ -157,9 +160,10 @@
 						{
 							switch(event.keyCode)
 							{
-								case 13://回车
-									tdObj.html($(this).val());
+								case 13://回车							
+									tdObj.html(inputObj.val());
 									//获取一行的所有列
+								  if(tdObj.text()!=oldText)
 									SendRow(tdObj);
 									break;
 								case 27:
@@ -169,8 +173,8 @@
 						}).blur(function()
 						{
 									//bug 在IP地址访问时，没有执行,没有审查元素--因为与input.blur冲突了 = = 
-									var newText = $(this).val();  
-									tdObj.html(newText);
+									tdObj.html(inputObj.val());
+								 if(tdObj.text()!=oldText)
 									SendRow(tdObj);
 
 						});

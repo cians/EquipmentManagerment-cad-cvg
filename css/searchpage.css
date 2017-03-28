@@ -9,32 +9,36 @@
 #search {
     position: relative;
     top: 5px;
-    left: 88px;
+    left: 208px;
 }
 
-.table_id {
+.table_ids {
     width: 80px;
 }
 
-.table_category {
-    width: 100px;
+.table_categorys {
+    width: 140px;
 }
 
-.table_specification,
+.table_specifications,
 .table_notes {
     width: 200px;
 }
 
-.table_user {
+.table_users {
     width: 80px;
 }
 
-.table_registration {
+.table_registrations {
     width: 80px;
 }
 
-.table_time {
+.table_times {
     width: 160px;
+}
+
+.table_addresses {
+    width: 100px;
 }
 
 ul,
