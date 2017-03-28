@@ -21,8 +21,10 @@ if($res){
     {
 
         $sql_unusual="INSERT INTO 异常操作记录 VALUES ('$operator','$today','$pname','$rid','$category','$specification',0,'修改')";
+        $sql_log="UPDATE 设备使用状态 SET 使用日志=concat(使用日志,'。$time:$pname.开始使用') WHERE ID='$rid'";
         $res_unusual=$conn_edit->query($sql_unusual);
-        if(!$res_unusual)
+        $res_log=$conn_edit->query($sql_log);
+        if(!$res_unusual && !$res_log)
         {
             echo "录入异常操作记录失败";
         }

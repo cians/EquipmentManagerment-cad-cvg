@@ -15,9 +15,12 @@ if($res){
     if(!ctype_space($category)||!ctype_space($specification))
     {//如果有设备信息则置空闲，录入敏感操作记录
         echo "行已删除";
-        $sql_unusual="INSERT INTO 异常操作记录(操作人,修改时间,设备ID,设备类别,品牌规格,已读,备注) VALUES ('$operator','$today','$rid','$category','$specification',0,'删除')";
+        $sql_unusual="INSERT INTO 异常操作记录(操作人,修改时间,设备ID,设备类别,品牌规格,已读,备注) 
+                         VALUES ('$operator','$today','$rid','$category','$specification',0,'删除')";
+        $sql_log="UPDATE 设备使用状态 SET 使用日志=concat(使用日志,'。$today:$operator.归还') WHERE ID='$rid'";
         $res_unusual=$conn_del->query($sql_unusual);
-        if(!$res_unusual)
+        $res_log=$conn_del->query($sql_log);
+        if(!$res_unusual && !$res_log)
         {
             echo "录入异常操作记录失败";
         }
