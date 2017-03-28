@@ -6,7 +6,7 @@ $pname=$_POST["pname"];
 $category=$_POST["category"];
 $status=$_POST["status"];
 $registration=$_POST["registration"];
-$conn_que = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+$conn_que = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 if($pname=="所有姓名")
 {
     if($status=="在用")

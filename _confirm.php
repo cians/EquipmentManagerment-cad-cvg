@@ -5,7 +5,7 @@
     $uname=$_SESSION['username']=$_POST['username'];
     $uword=$_SESSION['password']=$_POST['password'];
     $today=date("Y-m-d H:i");
-    $conn_confirm = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+    $conn_confirm = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
     $sql_confirm="SELECT 登录密码 FROM 人员 WHERE 姓名='$uname'";
    if($res=$conn_confirm->query($sql_confirm))
    {

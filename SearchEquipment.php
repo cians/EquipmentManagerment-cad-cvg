@@ -18,7 +18,7 @@
         {
                 <?php
                 if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}  
-                $conn_edit = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+               
                 ?>
         querydb();
         function td2textbox(tdObj)

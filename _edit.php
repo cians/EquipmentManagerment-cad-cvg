@@ -11,7 +11,7 @@ $time=$_POST["time"];
 $operator=$_POST['operator'];
 $today=date("Y-m-d H:i");
 //echo "console.log("14")";
-$conn_edit = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+$conn_edit = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 //$sql = "UPDATE 设备使用状态 SET 设备类别='$category', 品牌规格='$specification', 当前使用人='$pname', 修改时间='$time' WHERE ID='$rid'";
 $sql = "UPDATE 设备使用状态 SET 设备类别='$category', 品牌规格='$specification', 当前使用人='$pname',备注= '$detail', 修改时间='$today' WHERE ID='$rid'";
 $res = $conn_edit->query($sql);

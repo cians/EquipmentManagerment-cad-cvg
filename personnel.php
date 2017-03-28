@@ -19,7 +19,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "cad@cvg";
-						$dbname = "设备管理系统";
+						$dbname = "equipmentdatabase";
 						// 创建连接
 						$conn = new mysqli($servername, $username, $password, $dbname);
 						 // 检测连接

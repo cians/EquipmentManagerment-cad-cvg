@@ -8,7 +8,7 @@ $category=$_POST["category"];
 $specification=$_POST["specification"];
 $today=date("Y-m-d H:i");
 //echo "console.log("14")";
-$conn_del = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+$conn_del = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 $sql = "UPDATE 设备使用状态 SET 当前使用人='空闲' WHERE ID='$rid'";
 $res = $conn_del->query($sql);
 if($res){

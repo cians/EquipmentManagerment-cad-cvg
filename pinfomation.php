@@ -114,7 +114,7 @@
     <?php
     if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
     $pname=$_SESSION['username'];
-    $conn_p = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+    $conn_p = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
     $sql_q="SELECT * FROM 人员 WHERE 姓名='$pname'";
     $res=$conn_p->query($sql_q);
     if($row=$res->fetch_assoc())

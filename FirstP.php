@@ -193,7 +193,7 @@
 		</div>
 			<?php
 			//读取异常操作记录
-			$conn_query = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+			$conn_query = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 			$sql_unusual="SELECT * FROM 异常操作记录 WHERE (被修改人='$pname'AND 已读=0)";
 			$res_unusual=$conn_query->query($sql_unusual);
 			if($res_unusual&&$res_unusual->num_rows>0)
@@ -227,7 +227,7 @@
 						$servername = "localhost";
 						$username = "root";
 						$password = "cad@cvg";
-						$dbname = "设备管理系统";
+						$dbname = "equipmentdatabase";
 						// 创建连接
 						$conn = new mysqli($servername, $username, $password, $dbname);
 						 // 检测连接

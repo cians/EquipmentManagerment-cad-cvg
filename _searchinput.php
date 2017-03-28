@@ -3,7 +3,7 @@ ini_set('display_errors','on');
 error_reporting(E_ALL);
 header("charset=utf-8");
 $inputext=$_POST["inputext"];
-$conn_que = new mysqli("localhost", "root", "cad@cvg", "设备管理系统");
+$conn_que = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 $sql_oo="select * from 设备使用状态 where ID like '%$inputext%'
 union
 select * from 设备使用状态 where 设备类别 like '%$inputext%'
