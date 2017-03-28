@@ -7,7 +7,7 @@
 <head>
     <script charset="utf-8" src="./js/jquery-1.7.2.min.js"></script>
 	<script type="text/javascript" charset="utf-8">
-        function confirm()
+        function verification()
         {
             var uname=$("#id_username").val();
             var pword=$("#id_password").val();
@@ -22,8 +22,8 @@
                 switch (data)
                 {
                     case 0:
-                        var qr=confirm("你的登录密码已设置为你的IP:"+pword+"，下次登录IP没变的话可无密码登录");
-                              if(qr==true) {window.location.href='main.php';}
+                        var qr=confirm("你的登录密码已设置为你的IP:"+pword+"，下次登录IP没变的话不用密码可直接登录");
+                         if(qr==true) {location.href='main.php';}
                         console.log("password has set as your ip");
                         break;
                     case 1:
@@ -33,7 +33,7 @@
                         alert("errors! try typing your ip");
                         break;
                     case 9:
-                        alert("error occurs when set password");
+                        alert("初始化密码出错");
                         break;
                     case 7:
                         alert("录入登录时间出错");
@@ -50,7 +50,7 @@
                         var e = event || window.event || arguments.callee.caller.arguments[0];
                           if(e && e.keyCode==13)
                           { // enter 键
-                            confirm();
+                            verification();
                           }
 
                     }
@@ -58,7 +58,7 @@
 
                    $("#loginB").click(function()
                    {
-                       confirm();
+                       verification();
                    })
 
      })
