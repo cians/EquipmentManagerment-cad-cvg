@@ -12,7 +12,7 @@ $conn_del = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");
 $sql = "UPDATE 设备使用状态 SET 当前使用人='空闲' WHERE ID='$rid'";
 $res = $conn_del->query($sql);
 if($res){
-    if(!ctype_space($category)||!ctype_space($specification))
+    if(!(ctype_space($category) || empty($category))||!(ctype_space($specification)||empty($specification)))
     {//如果有设备信息则置空闲，录入敏感操作记录
         echo "行已删除";
         $sql_unusual="INSERT INTO 异常操作记录(操作人,修改时间,设备ID,设备类别,品牌规格,已读,备注) 
