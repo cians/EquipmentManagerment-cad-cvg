@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<link href="./css/buttons.css" rel="stylesheet" type="text/css">
+<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <link href="./css/personinfo.css" rel="stylesheet" type="text/css">
 <html lang="zh-cn" xml:lang="zh-cn">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,12 +10,10 @@
     <head>
     <script src="./js/jquery-1.7.2.min.js"  type="text/javascript" charset="utf-8"></script>
     <script type="text/javascript" charset="utf-8">
-    $(function()
-    {
-        function td2textbox(tdObj)
+     function td2textbox(tdObj)
         {
                         //找到当前鼠标单击的td  
-            var oldText = tdObj.text();
+            var oldText = tdObj.html();
             var inputObj = $("<input type='text' />");  
             //去掉文本框的边框  
             inputObj.css("border-width", 0);   
@@ -51,7 +49,7 @@
                         case 13://回车
                             tdObj.html(inputObj.val());
                             //获取一行的所有列
-                            //execute();
+                            //save2server();
                             break;
                         case 27:
                             tdObj.html(oldText);
@@ -62,48 +60,50 @@
                             //bug 在IP地址访问时，没有执行,没有审查元素--因为与input.blur冲突了 = = 
                             var newText = inputObj.val();  
                             tdObj.html(newText);
-                           // execute();
+                            //save2server();
 
                 });
         }
-        function execute()
+        function save2server()
         {
             //var tds=tdObj.parent("tr").children("td");
-            var tname=$("#pname").text(); //！！！id是数字要验证是否有影响
-            var tsid=$("#sid").text();
-            var tgrade=$("#grade").text();
-            var tphone=$("#phone").text();
-            var tpword=$.trim($("#newpwords").val());
-            var tpword2=$.trim($("#newpwords2").val());
+            var tname=$("#pname").html(); //！！！id是数字要验证是否有影响
+            var tsid=$("#sid").html();
+            var tgrade=$("#grade").html();
+            var tphone=$("#phone").html();
+            var tpword=$.trim($(".newpwords").val());
+            var tpword2=$.trim($(".newpwords2").val());
             <?php
 					if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
 					echo "var yourname='{$_SESSION['username']}';";
 			?>
-           // console.log(tsid);
+            console.log(tpword);
             if(tpword==tpword2&&tname==yourname)
-                $.post("_editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
+            $.post("_editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
+                {
+                //有时没有返回data，可能需要延时？
+                var datai=parseInt(data);
+                console.log(datai);
+                    if(datai==0)
                     {
-                    //有时没有返回data，可能需要延时？
-                    var datai=parseInt(data);
-                    console.log(datai);
-                        if(datai==0)
-                        {
-                            alert("修改出错");
-                        }
-                        else
-                            alert("信息已修改");
-                    })
+                        alert("修改出错");
+                    }
+                    else
+                        alert("信息已修改");
+                })
             else
-            alert("两次输入的密码不一致!");
-
+                alert("两次输入的密码不一致!");
+        location.reload();
         }
+    $(function()
+    {
         $("#sid,#grade,#phone").click(function()
         {
             td2textbox($(this));
         })
         $("#submit").click(function()
         {
-            execute();          
+            save2server();          
         })
     })
 
@@ -121,7 +121,7 @@
     {
     ?>
 <form>
-    <table class=table border="1" cellspacing="0" cellpadding="5">
+    <table class=tablep border="1" cellspacing="0" cellpadding="5">
         <tr>
             <td>姓名：</td>
             <td id=pname><?= $pname ?></td>
@@ -157,7 +157,7 @@
         </tr>
         <tr>
             <td id=submit colspan=2 align=center>
-                <input type="submit" value="提交修改"></td>
+                <input class="btn" type="submit" value="提交修改"></td>
         </tr>
         </table>
     </form>

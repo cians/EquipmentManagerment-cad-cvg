@@ -13,8 +13,8 @@ if(!ctype_space($pword)&&!empty($pword))
     {$sqlp = "UPDATE 人员 SET 学号='$sid', 年级='$grade', 联系方式='$phone',登录密码='$pword' WHERE 姓名='$pname'";}
 else
     {$sqlp = "UPDATE 人员 SET 学号='$sid', 年级='$grade', 联系方式='$phone' WHERE 姓名='$pname'";}
-$res=$conn_editp->query($sqlp);
-if(!$res)
+$res_editp=$conn_editp->query($sqlp);
+if(!$res_editp)
 {
     echo 0;
 }
