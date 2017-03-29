@@ -8,7 +8,7 @@ $category=$_POST["category"];
 $specification=$_POST["specification"];
 $detail=$_POST["detail"];
 $time=$_POST["time"];
-$operator=$_POST['operator'];
+$operator=$_POST["operator"];
 $today=date("Y-m-d H:i");
 //echo "console.log("14")";
 $conn_edit = new mysqli("localhost", "root", "cad@cvg", "equipmentdatabase");

@@ -64,7 +64,10 @@
 
                 });
         }
-        function save2server()
+
+    $(function()
+    {
+	 function save2server()
         {
             //var tds=tdObj.parent("tr").children("td");
             var tname=$("#pname").html(); //！！！id是数字要验证是否有影响
@@ -79,9 +82,16 @@
 			?>
             console.log(tpword);
             if(tpword==tpword2&&tname==yourname)
-            $.post("_editpinfo.php",{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},function(data)
+            $.ajax({
+				url:"_editpinfo.php",
+				type:"POST",
+				timeout:300000,
+				caceh:false,
+				async:false,
+				data:{pname:tname,sid:tsid,grade:tgrade,phone:tphone,pword:tpword},
+				success:function(data)
                 {
-                //有时没有返回data，可能需要延时？
+                //有时没有返回data，可能需要延时----采用axaj同步解决
                 var datai=parseInt(data);
                 console.log(datai);
                     if(datai==0)
@@ -90,20 +100,23 @@
                     }
                     else
                         alert("信息已修改");
-                })
+                },
+				error:function()
+				{
+					alert("errors");
+				}
+			})
             else
                 alert("两次输入的密码不一致!");
-        location.reload();
         }
-    $(function()
-    {
         $("#sid,#grade,#phone").click(function()
         {
             td2textbox($(this));
         })
         $("#submit").click(function()
         {
-            save2server();          
+            save2server();   
+        location.reload();			
         })
     })
 
