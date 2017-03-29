@@ -1,4 +1,4 @@
-#table {
+.table {
     border-right: medium none;
     border-top: medium none;
     border-left: medium none;
@@ -10,9 +10,11 @@
     -webkit-border-vertical-spacing: 0px;
 }
 
-#newpword,
-#newpword2 {
-    width: 605px;
+.newpword,
+.newpword2,
+.newpwords,
+.newpwords2 {
+    width: 305px;
     padding: 7px 0 9px;
     _padding: 6px 0 9px;
     ime-mode: disabled;

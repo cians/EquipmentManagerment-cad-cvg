@@ -121,7 +121,7 @@
     {
     ?>
 <form>
-    <table id=table border="1" cellspacing="0" cellpadding="5" rules="row">
+    <table class=table border="1" cellspacing="0" cellpadding="5">
         <tr>
             <td>姓名：</td>
             <td id=pname><?= $pname ?></td>
@@ -144,14 +144,14 @@
         </tr>
         <tr>
            <td>输入新密码：</td>
-            <td id=newpword>
-                <input id=newpwords name="password" type="password">
+            <td class=newpword>
+                <input class=newpwords name="password" type="password">
             </td>
         </tr>
         <tr>
             <td>确认新密码：</td>
-            <td id=newpword>
-                <input id=newpwords2  name="password" type="password">
+            <td class=newpword>
+                <input class=newpwords2  name="password" type="password">
             </td>
             <lable id=tips></lable>
         </tr>

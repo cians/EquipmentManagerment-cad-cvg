@@ -1,7 +1,7 @@
 #ADD {
     position: absolute;
     top: 40px;
-    left: 700px;
+    left: 800px;
     width: 100px;
     height: 28px;
 }
@@ -9,7 +9,7 @@
 #Refresh {
     position: absolute;
     top: 40px;
-    left: 800px;
+    left: 900px;
     width: 100px;
     height: 28px;
 }
@@ -27,7 +27,7 @@
 }
 
 .table_specification {
-    width: 200px;
+    width: 300px;
 }
 
 .table_detail {

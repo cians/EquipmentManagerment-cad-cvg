@@ -12,6 +12,11 @@
     left: 208px;
 }
 
+li:hover,
+li:active {
+    background-color: #00B2EE;
+}
+
 .table_ids {
     width: 80px;
 }
