@@ -21,7 +21,11 @@
 
     if(is_null($pwd))
     {
-        $pwd=$_SERVER["REMOTE_ADDR"];
+        //首次登陆也可直接输入密码
+        if(is_null($uword)||empty($uword))
+            $pwd=$_SERVER["REMOTE_ADDR"];
+        else
+             $pwd=$uword;
         //echo $uword;
         $sql_update="UPDATE 人员 SET 登录密码='$pwd' WHERE 姓名='$uname'";
         $ress=$conn_confirm->query($sql_update);
