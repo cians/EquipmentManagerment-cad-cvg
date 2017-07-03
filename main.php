@@ -1,5 +1,15 @@
 ﻿<!DOCTYPE html>
 <html>
+<?php
+if (session_status() !== PHP_SESSION_ACTIVE) {session_start();}
+if(empty($_SESSION['username']))
+   { 
+        echo( "<script language='javascript' type='text/javascript'>");    
+        //未登录时重定向到登陆页面
+        echo ("window.location.href='Index.php'");    
+        echo ("</script>");  
+   }
+?>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
              <title>个人设备使用情况</title>
